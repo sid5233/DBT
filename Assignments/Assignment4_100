@@ -1,0 +1,100 @@
+ 
+                                                        Assignment - 4
+            Name - Sudarshan Vijay Bhamare 
+            ID - 200240520100
+            Center - JUHU
+            Day - 3
+
+            
+    1) Write a select command that produces the order number, amount, and date for all rows in the Orders table.
+
+    -> SELECT onum,
+        amt,
+        odate
+        FROM ORDERS;
+
+    2) Write a query that produces all rows from the Customers table for          
+        which the salesperson’s number is 1001.
+
+    ->  SELECT *
+        FROM CUSTOMERS
+        WHERE snum=1001;
+    
+    3) Write a query that displays the Salespeople table with the columns in the following order: city, sname, snum, comm.
+
+    -> SELECT city,
+        sname,
+        snum,
+        comm
+    FROM  SALESPEOPLE ;
+    
+    4) Write a select command that produces the rating followed by the               
+        name of each customer in San Jose.
+
+    -> SELECT rating||' '||cname "employee rating"
+    FROM CUSTOMERS
+    WHERE city='sanjose';
+    
+    5) Write a query that will produce the snum values of all salespeople (suppress the duplicates) with orders in the Orders table.
+
+    -> SELECT DISTINCT Snum,Onum
+    FROM SALESPEOPLE
+    ORDER BY snum;
+    
+    
+    
+    
+    
+    Database changed
+mysql> SELECT onum,
+    ->         amt,
+    ->         odate
+    ->         FROM ORDERS;
++------+---------+------------+
+| onum | amt     | odate      |
++------+---------+------------+
+| 3001 |   18.69 | 1990-10-03 |
+| 3003 |  767.19 | 1990-10-03 |
+| 3002 | 1900.10 | 1990-10-03 |
+| 3005 | 5160.45 | 1990-10-03 |
+| 3006 | 1098.16 | 1990-10-04 |
+| 3009 | 1713.23 | 1990-10-04 |
+| 3007 |   75.75 | 1990-10-04 |
+| 3008 | 4723.00 | 1990-10-05 |
+| 3010 | 1309.95 | 1990-10-06 |
+| 3011 | 9891.88 | 1990-10-06 |
++------+---------+------------+
+10 rows in set (0.01 sec)
+
+mysql>  SELECT *
+    ->         FROM CUSTOMERS
+    ->         WHERE snum=1001;
++------+---------+--------+--------+------+
+| Cnum | Cname   | City   | Rating | Snum |
++------+---------+--------+--------+------+
+| 2001 | Hoffman | London |    100 | 1001 |
+| 2006 | Clemens | London |    100 | 1001 |
++------+---------+--------+--------+------+
+2 rows in set (0.01 sec)
+
+mysql>      SELECT city,
+    ->         sname,
+    ->         snum,
+    ->         comm.
+    ->     FROM  SALESPEOPLE ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM  SALESPEOPLE' at line 5
+mysql> SELECT city,
+    ->         sname,
+    ->         snum,
+    ->         comm
+    ->     FROM  SALESPEOPLE ;
++-----------+---------+------+------+
+| city      | sname   | snum | comm |
++-----------+---------+------+------+
+| London    | Peel    | 1001 | 0.12 |
+| San Jose  | Serres  | 1002 | 0.13 |
+| London    | Motika  | 1004 | 0.11 |
+| Barcelona | Rifkin  | 1007 | 0.15 |
+| New York  | Axelrod | 1003 | 0.10 |
++-----------+---------+------+------+
+5 rows in set (0.06 sec)
