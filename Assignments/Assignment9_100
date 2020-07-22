@@ -1,0 +1,75 @@
+
+ 
+                                                        Assignment - 9
+            Name - Sudarshan Vijay Bhamare 
+            ID - 200240520100
+            Center - JUHU
+        
+    1) Write a query that lists each order number followed by the name of the customer
+who made the order.
+ANS:-SELECT orders.onum, customers.cname
+    -> FROM orders, customers
+    -> WHERE orders.cnum=customers.cnum;
++------+----------+
+| onum | cname    |
++------+----------+
+| 3001 | Cisneros |
+| 3003 | Hoffmam  |
+| 3002 | Pereira  |
+| 3005 | Liu      |
+| 3006 | Cisneros |
+| 3009 | Giovanni |
+| 3007 | Grass    |
+| 3008 | Clemens  |
+| 3010 | Grass    |
+| 3011 | Clemens  |
++------+----------+
+
+2) Write a query that gives the names of both the salesperson and the customer for
+each order along with the order number.
+ANS:-SELECT o.onum, s.sname, c.cname
+    -> FROM orders o, customers c, salespeople s
+    -> WHERE o.cnum=c.cnum AND o.snum=s.snum;
++------+---------+----------+
+| onum | sname   | cname    |
++------+---------+----------+
+| 3003 | Peel    | Hoffmam  |
+| 3009 | Axelros | Giovanni |
+| 3005 | Serres  | Liu      |
+| 3007 | Serres  | Grass    |
+| 3010 | Serres  | Grass    |
+| 3008 | Peel    | Clemens  |
+| 3011 | Peel    | Clemens  |
+| 3001 | Rifkin  | Cisneros |
+| 3006 | Rifkin  | Cisneros |
+| 3002 | Motika  | Pereira  |
++------+---------+----------+
+3) Write a query that produces all customers serviced by salespeople with a
+commission above 12%. Output the customer’s name, the salesperson’s name,
+and the salesperson’s rate of commission.
+ANS:- SELECT c.cname, s.sname, s.comm
+    -> FROM customers c, salespeople s
+    -> WHERE comm > 0.12 AND c.snum=s.snum;
++----------+--------+------+
+| cname    | sname  | comm |
++----------+--------+------+
+| Liu      | Serres | 0.13 |
+| Grass    | Serres | 0.13 |
+| Cisneros | Rifkin | 0.15 |
+| Pereira  | Motika | 0.15 |
++----------+--------+------+
+4) Write a query that calculates the amount of the salesperson’s commission on each
+order by a customer with a rating above 100.
+ANS:- SELECT s.sname, c.cname, o.amt*s.comm AS "comm"
+    -> FROM orders o, customers c, salespeople s
+    -> WHERE c.rating > 100 AND o.cnum=c.cnum AND o.snum=s.snum;
++---------+----------+--------+
+| sname   | cname    | comm   |
++---------+----------+--------+
+| Serres  | Liu      | 670.86 |
+| Serres  | Grass    |   9.85 |
+| Serres  | Grass    | 170.29 |
+| Rifkin  | Cisneros |   2.80 |
+| Rifkin  | Cisneros | 164.72 |
+| Axelros | Giovanni | 171.32 |
++---------+----------+--------+
